@@ -1,0 +1,6 @@
+{ addEmployee }
+
+const addEmployee = (employee) => {
+        setEmployees([...employees, employee]);
+      };
+      addEmployee={addEmployee}
