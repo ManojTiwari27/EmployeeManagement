@@ -1,43 +1,104 @@
-import React ,{useState} from 'react'
+import React, { useState } from 'react'
 import AddEmployee from './components/AddEmployee';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import UpdateEmployee from './components/UpdateEmployee';
+import Project from './components/Project';
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route
+  BrowserRouter as Router,
+  Routes,
+  Route
 } from "react-router-dom";
 
 export default function App() {
-    const [employees, setEmployees] = useState([
-        {
-          fName: 'Manoj',
-          lName: 'Tiwari',
-          mail: 'tiwarimanoj@gmail.com',
-        },
-        {
-          fName: 'Pratik',
-          lName: 'More',
-          mail: 'morepratik@gmail.com',
-        },
-        {
-          fName: 'Sahil',
-          lName: 'Pawar',
-          mail: 'pawarsahil@gmail.com',
-        },
-      ]);
-      setEmployees('')
-    
+  
 
-    return (
-        <>
-            <Router>
-                <Navbar />
-                <Routes>
-                    <Route index path="/" element={<Home employee={employees}  />}></Route>
-                    <Route path="/add" element={<AddEmployee  />} />
-                </Routes>
-            </Router>
-        </>
-    )
+  const [employees, setEmployees] = useState([
+    {
+      id: 1,
+      fName: 'Manoj',
+      lName: 'Tiwari',
+      mail: 'tiwarimanoj@gmail.com',
+      
+    },
+    {
+      id: 2,
+      fName: 'Pratik',
+      lName: 'More',
+      mail: 'morepratik@gmail.com',
+    },
+    {
+      id: 3,
+      fName: 'Sahil',
+      lName: 'Pawar',
+      mail: 'pawarsahil@gmail.com',
+    },
+  ]);
+ 
+  const [projects,setProjects]=useState([
+    {
+      id: 1,
+      name: 'Employee Management System',
+      employees: []
+    },
+    {
+      id: 2,
+      name: "Student Management System",
+      employees: []
+    },
+    {
+      id: 3,
+      name:  "Library MAnagementy System",
+      employees: []
+    },
+   
+    {
+      id: 4,
+      name: "Timetable Management System",
+      employees: []
+    },
+    {
+      id: 5,
+      name: "Weather Forecasting APP ",
+      employees: []
+    },
+
+  ])
+  const addEmployee = (employee) => {
+    //emp =[{},{},{}], empenw={} emp = [...emp,empnew]
+    setEmployees(employees.concat(employee));
+  };
+  const handleDelete = (id) => {
+    //console.log(id)
+    let updatedEmployee = employees.filter((emp) => emp.id !== id)
+    setEmployees(updatedEmployee)
+  }
+  const updateEmployee = (updatedEmployee) => {
+    const updatedEmployees = employees.map((emp) => {
+      if (emp.id === updatedEmployee.id) {
+        return updatedEmployee;
+      }
+      return emp;
+    });
+    setEmployees(updatedEmployees);
+  };
+  
+  return (
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route index path="/" element={<Home employee={employees} setEmployee={setEmployees} handleDelete={handleDelete} />}></Route>
+          <Route path="/add" element={<AddEmployee addEmployee={addEmployee} />} />
+          <Route
+            path="/update/:id"
+            element={
+              <UpdateEmployee employees={employees} updateEmployee={updateEmployee} />
+            }
+          />
+          <Route path="/projects" element={ <Project projects= {projects} setProjects={setProjects} employees={employees}/> }   />
+        </Routes>
+      </Router>
+    </>
+  )
 }
