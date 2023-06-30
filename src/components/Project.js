@@ -1,38 +1,30 @@
 import React from 'react';
 
-export default function Project({ projects, setProjects, employees }) {
-    return (
-        <div className="container my-5">
-          
-            <table className="table table-bordered table-light" style={{ border: '1px solid grey' }} >
-                <thead>
-                    <tr>
-                        <th>Sr.No</th>
-                        <th scope="col">Projects </th>
-                        <th scope="col">Employees</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        projects.map((pjts, index) => (
-                            <tr key={pjts.id}>
-                                <th scope="col" className="text-center" >{index + 1}</th>
-                                <td>{pjts.name}</td>
-                                </tr>
-                            
-                        ))
-                       
-                        
-                    }
-                    {
-                            employees.map((emp)=>(
-                                <td>{emp.fName}</td>
-                            ))
-                    }
-
-                </tbody>
-            </table >
-
-        </div>
-    );
+export default function Projects({ projects, employees }) {
+  return (
+    <div className="container my-5">
+      <table className="table table-bordered table-light">
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Employees</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((project) => (
+            <tr key={project.id}>
+              <td>{project.name}</td>
+              <td>
+                {employees
+                  .filter((emp) => emp.project === project.name)
+                  .map((emp) => (
+                    <div key={emp.id}>{`${emp.fName} ${emp.lName}`}</div>
+                  ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
