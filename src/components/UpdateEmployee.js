@@ -29,7 +29,7 @@ export default function UpdateEmployee({ employees, updateEmployee }) {
     };
 
     return (
-        <div className="container my-5">
+        <div className="container my-5 shadow-lg p-3 mb-5 bg-white rounded">
             <form>
                 <div className="row">
                     <div className="col">

@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Home({ employee, setEmployee, handleDelete }) {
 
     return (
         <div className="container my-5">
-            <table className="table table-bordered table-light"  >
+            <table className="table ttable-light shadow-lg p-3 mb-5 bg-white rounded"  >
                 <thead>
                     <tr>
                         <th scope="col">Sr.No</th>
@@ -35,10 +34,9 @@ export default function Home({ employee, setEmployee, handleDelete }) {
                                     </Link>
                                     <button type="button" className="btn btn-dark my-2 mx-2" onClick={() => { handleDelete(emp.id) }} >Delete</button>
                                 </td>
-                                
+
                             </tr>
                         ))
-
                     }
                 </tbody>
             </table >

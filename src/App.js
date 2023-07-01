@@ -10,34 +10,35 @@ import {
   Route
 } from "react-router-dom";
 
+
 export default function App() {
-   const [employees, setEmployees] = useState([
+  const [employees, setEmployees] = useState([
     {
       id: 1,
       fName: 'Manoj',
       lName: 'Tiwari',
       mail: 'tiwarimanoj@gmail.com',
-      project: '' 
-      
-      
+      project: ''
+
+
     },
     {
       id: 2,
       fName: 'Pratik',
       lName: 'More',
       mail: 'morepratik@gmail.com',
-      project: '' 
+      project: ''
     },
     {
       id: 3,
       fName: 'Sahil',
       lName: 'Pawar',
       mail: 'pawarsahil@gmail.com',
-      project: '' 
+      project: ''
     },
   ]);
- 
-  const [projects,setProjects]=useState([
+
+  const [projects, setProjects] = useState([
     {
       id: 1,
       name: 'Employee Management System',
@@ -48,9 +49,9 @@ export default function App() {
     },
     {
       id: 3,
-      name:  "Library Managementy System",
+      name: "Library Managementy System",
     },
-   
+
     {
       id: 4,
       name: "Timetable Management System",
@@ -59,7 +60,7 @@ export default function App() {
       id: 5,
       name: "Weather Forecasting APP ",
     },
-])
+  ])
   const addEmployee = (employee) => {
     //emp =[{},{},{}], empenw={} emp = [...emp,empnew]
     setEmployees(employees.concat(employee));
@@ -78,16 +79,16 @@ export default function App() {
     });
     setEmployees(updatedEmployees);
   };
-  
-  
+
+
   return (
     <>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
           <Route index path="/" element={<Home employee={employees} setEmployee={setEmployees} handleDelete={handleDelete} />}></Route>
-          <Route path="/add" element={<AddEmployee addEmployee={addEmployee} 
-                projects={projects} setProjects={setProjects}  
+          <Route path="/add" element={<AddEmployee addEmployee={addEmployee}
+            projects={projects} setProjects={setProjects}
           />} />
           <Route
             path="/update/:id"
@@ -95,7 +96,9 @@ export default function App() {
               <UpdateEmployee employees={employees} updateEmployee={updateEmployee} />
             }
           />
-          <Route path="/projects" element={ <Project projects= {projects} setProjects={setProjects} employees={employees}/> }   />
+          <Route path="/projects" element={<Project projects={projects} setProjects={setProjects} employees={employees} />}
+          />
+          
         </Routes>
       </Router>
     </>
